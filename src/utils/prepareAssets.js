@@ -66,9 +66,27 @@ const fonts = {
 export const Fonts = {
   ...fonts,
   標楷體: {
-    src: '/CK.ttf', // 9.9 MB
+    src: 'fonts/CK.ttf', // 9.9 MB
     correction(size, lineHeight) {
       return (size * lineHeight - size) / 2;
+    },
+  },
+  GlacialIndifferenceBold: {
+    src: 'fonts/GlacialIndifference-Bold.otf', // 9.9 MB
+    correction(size, lineHeight) {
+      return (size * lineHeight - size) / 2 + size / 7;
+    },
+  },
+  GlacialIndifferenceItalic: {
+    src: 'fonts/GlacialIndifference-Italic.otf', // 9.9 MB
+    correction(size, lineHeight) {
+      return (size * lineHeight - size) / 2 + size / 7;
+    },
+  },
+  GlacialIndifferenceRegular: {
+    src: 'fonts/GlacialIndifference-Regular.otf', // 9.9 MB
+    correction(size, lineHeight) {
+      return (size * lineHeight - size) / 2 + size / 7;
     },
   },
 };
