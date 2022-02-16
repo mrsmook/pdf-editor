@@ -87,11 +87,6 @@
   "resolved" "https://registry.npmjs.org/@types/color-name/-/color-name-1.1.1.tgz"
   "version" "1.1.1"
 
-"@types/estree@*":
-  "integrity" "sha512-iaIVzr+w2ZJ5HkidlZ3EJM8VTZb2MJLCjw3V+505yVts0gRC4UMvjw0d1HPtGqI/HQC/KdsYtayfzl+AXY2R8g=="
-  "resolved" "https://registry.npmjs.org/@types/estree/-/estree-0.0.44.tgz"
-  "version" "0.0.44"
-
 "@types/estree@0.0.39":
   "integrity" "sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw=="
   "resolved" "https://registry.npmjs.org/@types/estree/-/estree-0.0.39.tgz"
@@ -140,7 +135,7 @@
   "resolved" "https://registry.npmjs.org/acorn-walk/-/acorn-walk-7.1.1.tgz"
   "version" "7.1.1"
 
-"acorn@^7.0.0", "acorn@^7.1.0":
+"acorn@^7.0.0":
   "integrity" "sha512-add7dgA5ppRPxCFJoAGfMDi7PIBXq1RtGo7BhbLaxwrXPOmw8gq48Y9ozT01hUKy9byMjlR20EJhu5zlkErEkg=="
   "resolved" "https://registry.npmjs.org/acorn/-/acorn-7.1.1.tgz"
   "version" "7.1.1"
@@ -1023,14 +1018,12 @@
   dependencies:
     "estree-walker" "^0.6.1"
 
-"rollup@^1.20.0", "rollup@^1.20.0||^2.0.0", "rollup@>=0.60.0", "rollup@>=0.66.0 <3":
-  "integrity" "sha512-/2HA0Ec70TvQnXdzynFffkjA6XN+1e2pEv/uKS5Ulca40g2L7KuOE3riasHoNVHOsFD5KKZgDsMk1CP3Tw9s+A=="
-  "resolved" "https://registry.npmjs.org/rollup/-/rollup-1.32.1.tgz"
-  "version" "1.32.1"
-  dependencies:
-    "@types/estree" "*"
-    "@types/node" "*"
-    "acorn" "^7.1.0"
+"rollup@^1.20.0||^2.0.0", "rollup@^2.67.2", "rollup@>=0.60.0", "rollup@>=0.66.0 <3":
+  "integrity" "sha512-hoEiBWwZtf1QdK3jZIq59L0FJj4Fiv4RplCO4pvCRC86qsoFurWB4hKQIjoRf3WvJmk5UZ9b0y5ton+62fC7Tw=="
+  "resolved" "https://registry.npmjs.org/rollup/-/rollup-2.67.2.tgz"
+  "version" "2.67.2"
+  optionalDependencies:
+    "fsevents" "~2.3.2"
 
 "sade@^1.4.0":
   "integrity" "sha512-m4BctppMvJ60W1dXnHq7jMmFe3hPJZDAH85kQ3ACTo7XZNVUuTItCQ+2HfyaMeV5cKrbw7l4vD/6We3GBxvdJw=="

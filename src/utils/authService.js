@@ -1,7 +1,7 @@
 import createAuth0Client from "@auth0/auth0-spa-js";
 import { user, isAuthenticated, popupOpen } from "./store";
 
-export const DOMAIN =process.env.DOMAIN
+export const DOMAIN = process.env.DOMAIN
 export const CLIENT_ID = process.env.CLIENTID
 
 async function createClient() {
