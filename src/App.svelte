@@ -33,7 +33,7 @@
   // for test purpose
   onMount(async () => {
 
-    auth0Client = await auth.createClient();
+    const auth0Client = await auth.createClient();
 
     isAuthenticated.set(await auth0Client.isAuthenticated());
     user.set(await auth0Client.getUser());
