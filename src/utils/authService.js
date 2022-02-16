@@ -3,8 +3,8 @@ import { user, isAuthenticated, popupOpen } from "./store";
 
 async function createClient() {
   let auth0Client = await createAuth0Client({
-    domain: process.env.DOMAIN,
-    client_id: process.env.CLIENTID
+    domain: 'my-cockpit.eu.auth0.com',
+    client_id: 'Ww74Ju5n4RLKj75TQ0AwMNo3HxQu5Hhg'
   });
 
   return auth0Client;
