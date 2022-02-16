@@ -8,6 +8,9 @@
   import Drawing from "./Drawing.svelte";
   import DrawingCanvas from "./DrawingCanvas.svelte";
   import prepareAssets, { fetchFont } from "./utils/prepareAssets.js";
+  import { isAuthenticated, user, user_tasks, tasks } from "./utils/store";
+  import auth from "./utils/authService";
+
   import {
     readAsArrayBuffer,
     readAsImage,
@@ -22,15 +25,21 @@
   let pages = [];
   let pagesScale = [];
   let allObjects = [];
-  let currentFont = "Times-Roman";
+  let currentFont = "GlacialIndifferenceBold";
   let focusId = null;
   let selectedPageIndex = -1;
   let saving = false;
   let addingDrawing = false;
   // for test purpose
   onMount(async () => {
+
+    auth0Client = await auth.createClient();
+
+    isAuthenticated.set(await auth0Client.isAuthenticated());
+    user.set(await auth0Client.getUser());
+
     try {
-      const res = await fetch("/test.pdf");
+      const res = await fetch("templates/Blanc Minimaliste Photo Université CV.pdf");
       const pdfBlob = await res.blob();
       await addPDF(pdfBlob);
       selectedPageIndex = 0;
@@ -38,9 +47,9 @@
         fetchFont(currentFont);
         prepareAssets();
       }, 5000);
-      // const imgBlob = await (await fetch("/test.jpg")).blob();
-      // addImage(imgBlob);
-      // addTextField("測試!");
+      
+      addTextField("Selim", 55, 100, 70, "GlacialIndifferenceBold", 1, 10);
+      addTextField("Zaouali", 55, 350, 70, "GlacialIndifferenceBold", 1, 10);
       // addDrawing(200, 100, "M30,30 L100,50 L50,70", 0.5);
     } catch (e) {
       console.log(e);
@@ -110,19 +119,19 @@
       addTextField();
     }
   }
-  function addTextField(text = "New Text Field") {
+  function addTextField(text = "New Text Field", size = 16, x = 0, y = 0, fontFamily = currentFont, lineHeight = 1.4, width = 0) {
     const id = genID();
     fetchFont(currentFont);
     const object = {
       id,
       text,
       type: "text",
-      size: 16,
-      width: 0, // recalculate after editing
-      lineHeight: 1.4,
-      fontFamily: currentFont,
-      x: 0,
-      y: 0
+      size: size,
+      width: width, // recalculate after editing
+      lineHeight: lineHeight,
+      fontFamily: fontFamily,
+      x: x,
+      y: y
     };
     allObjects = allObjects.map((objects, pIndex) =>
       pIndex === selectedPageIndex ? [...objects, object] : objects
@@ -176,6 +185,12 @@
   }
   function onMeasure(scale, i) {
     pagesScale[i] = scale;
+  }
+  function login() {
+    auth.loginWithPopup(auth0Client);
+  }
+  function logout() {
+    auth.logout(auth0Client);
   }
   // FIXME: Should wait all objects finish their async work
   async function savePDF() {
@@ -268,6 +283,19 @@
         src="/GitHub-Mark-32px.png"
         alt="A GitHub icon leads to personal GitHub page" />
     </a>
+    <span class="navbar-text">
+      <ul class="navbar-nav float-right">
+        {#if $isAuthenticated}
+        <li class="nav-item">
+          <a class="nav-link" href="/#" on:click="{logout}">Log Out</a>
+        </li>
+        {:else}
+        <li class="nav-item">
+          <a class="nav-link" href="/#" on:click="{login}">Log In</a>
+        </li>
+        {/if}
+      </ul>
+    </span>
   </div>
   {#if addingDrawing}
     <div
