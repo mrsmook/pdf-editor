@@ -18,6 +18,13 @@ export default {
   },
   plugins: [
     svelte({
+      kit: {
+        vite: {
+            define: {
+                'process.env': process.env,
+            },
+        },
+    }
       preprocess: sveltePreprocess({ postcss: true }),
       // enable run-time checks when not in production
       dev: !production,

@@ -3,8 +3,8 @@ import { user, isAuthenticated, popupOpen } from "./store";
 
 async function createClient() {
   let auth0Client = await createAuth0Client({
-    domain: process.DOMAIN,
-    client_id: process.CLIENTID
+    domain: process.env.DOMAIN,
+    client_id: process.envCLIENTID
   });
 
   return auth0Client;
