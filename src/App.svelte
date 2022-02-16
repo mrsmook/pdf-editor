@@ -8,7 +8,7 @@
   import Drawing from "./Drawing.svelte";
   import DrawingCanvas from "./DrawingCanvas.svelte";
   import prepareAssets, { fetchFont } from "./utils/prepareAssets.js";
-  import { isAuthenticated, user, user_tasks, tasks } from "./utils/store";
+  import { isAuthenticated, user } from "./utils/store";
   import auth from "./utils/authService";
 
   import {
@@ -30,14 +30,9 @@
   let selectedPageIndex = -1;
   let saving = false;
   let addingDrawing = false;
+  let auth0Client;
   // for test purpose
   onMount(async () => {
-
-    const auth0Client = await auth.createClient();
-
-    isAuthenticated.set(await auth0Client.isAuthenticated());
-    user.set(await auth0Client.getUser());
-
     try {
       const res = await fetch("templates/Blanc Minimaliste Photo Université CV.pdf");
       const pdfBlob = await res.blob();
@@ -51,6 +46,11 @@
       addTextField("Selim", 55, 100, 70, "GlacialIndifferenceBold", 1, 10);
       addTextField("Zaouali", 55, 350, 70, "GlacialIndifferenceBold", 1, 10);
       // addDrawing(200, 100, "M30,30 L100,50 L50,70", 0.5);
+      auth0Client = await auth.createClient();
+
+      isAuthenticated.set(await auth0Client.isAuthenticated());
+      user.set(await auth0Client.getUser());
+
     } catch (e) {
       console.log(e);
     }
